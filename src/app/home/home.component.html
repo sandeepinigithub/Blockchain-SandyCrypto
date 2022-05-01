@@ -4,25 +4,29 @@
         <div class="row m-4 p-4 justify-content-center align-items-center">
             <div class="col-6 px-5">
                 <p class="h1 fw-bold">Explore the crypto world. Buy and sell cryptocurrencies easily on Krypto.</p>
-                <button class="mt-3 btn btn-primary" (click)="checkIfWalletIsConnect()">Connect Wallet</button>
+                <button class="mt-3 btn btn-primary">Connect Wallet</button>
             </div>
             <div class="col-6">
                 <form>
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="address" placeholder="Address To">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Address To"
+                            [(ngModel)]="addressTo">
                         <label for="address">Address To</label>
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="number" class="form-control" id="amount" placeholder="Amount (Ethers)">
+                        <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount (Ethers)"
+                            [(ngModel)]="amount">
                         <label for="amount">Amount (Ethers)</label>
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="text" class="form-control" id="message" placeholder="Message">
+                        <input type="text" class="form-control" id="message" name="message" placeholder="Message"
+                            [(ngModel)]="message">
                         <label for="message">Message</label>
                     </div>
-                   
 
-                    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Send</button>
+
+                    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit"
+                        (click)="sendTransaction()">Send</button>
                 </form>
             </div>
         </div>
