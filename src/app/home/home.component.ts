@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   amount: any
   message: any
   transactionsCount: any
+  walletBTnShow: boolean = false;
 
   constructor(private winRef: WinRefService) {
     this.ethereum = winRef.window.ethereum;
@@ -112,5 +113,24 @@ export class HomeComponent implements OnInit {
 
       throw new Error("No ethereum object");
     }
-  };
+  }
+
+  async connectWallet() {
+    try {
+      if (!this.ethereum) {
+        alert("Please install MetaMask.");
+      }
+      else {
+        const accounts = await this.ethereum.request({ method: "eth_requestAccounts" });
+        this.currentAccount = accounts[0];
+        if (accounts !== undefined && accounts !== null && accounts.length > 0) {
+          this.walletBTnShow = true
+        }
+      }
+
+    } catch (error) {
+      console.log(error);
+      throw new Error("No ethereum object")
+    }
+  }
 }
